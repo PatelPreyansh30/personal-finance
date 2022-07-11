@@ -3,7 +3,7 @@
 
 <div class="container my-4">
   <div class="mb-4 bg-success text-white rounded text-center fw-semibold fs-1">Personal Finance</div>
-  <p>
+  <div class="text-center">
     <a class="btn btn-success form-label" data-bs-toggle="collapse"
       href="#addAmount" role="button" aria-expanded="false"
       aria-controls="addAmount">
@@ -20,7 +20,7 @@
       Balance
     </a>
 
-  </p>
+  </div>
 
   <div class="collapse mb-3" id="addAmount">
     <div class="card card-body">
@@ -41,7 +41,7 @@
               *
             </span>
           </span>
-          <input type="text" id="transaction_type" required class="form-control"
+          <input type="number" id="transaction_type" required class="form-control"
             aria-label="Sizing example
             input" aria-describedby="inputGroup-sizing-default">
         </div>

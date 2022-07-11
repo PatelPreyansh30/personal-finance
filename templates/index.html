@@ -2,24 +2,26 @@
 {% block body %}
 
 <div class="container my-4">
-  <div class="mb-4 bg-success text-white rounded text-center fw-semibold fs-1">Personal Finance</div>
-  <div class="text-center">
-    <a class="btn btn-success form-label" data-bs-toggle="collapse"
-      href="#addAmount" role="button" aria-expanded="false"
-      aria-controls="addAmount">
-      Add Amount
-    </a>
-    <a class="btn btn-success form-label" data-bs-toggle="collapse"
-      href="#history" role="button" aria-expanded="false"
-      aria-controls="addAmount">
-      Transaction History
-    </a>
-    <a class="btn btn-success form-label" data-bs-toggle="collapse"
-      href="#balance" role="button" aria-expanded="false"
-      aria-controls="addAmount">
-      Balance
-    </a>
-
+  <div class="bg-primary text-white rounded text-center fw-semibold fs-1">Personal
+    Finance</div>
+  <div class="text-center container">
+    <div class="row" style="justify-content: center">
+      <a class="m-3 btn btn-success form-label col-sm" data-bs-toggle="collapse"
+        href="#addAmount" role="button" aria-expanded="false"
+        aria-controls="addAmount">
+        Add Amount
+      </a>
+      <a class="m-3 btn btn-success form-label col-sm" data-bs-toggle="collapse"
+        href="#history" role="button" aria-expanded="false"
+        aria-controls="addAmount">
+        Transaction History
+      </a>
+      <a class="m-3 btn btn-success form-label col-sm" data-bs-toggle="collapse"
+        href="#balance" role="button" aria-expanded="false"
+        aria-controls="addAmount">
+        Balance
+      </a>
+    </div>
   </div>
 
   <div class="collapse mb-3" id="addAmount">
@@ -41,7 +43,8 @@
               *
             </span>
           </span>
-          <input type="number" id="transaction_type" required class="form-control"
+          <input type="number" id="transaction_type" required
+            class="form-control"
             aria-label="Sizing example
             input" aria-describedby="inputGroup-sizing-default">
         </div>

@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<div class="container my-4">
+  <div class="bg-primary text-white rounded text-center fw-semibold fs-1">Personal
+    Finance</div>
+  <div class="text-center container">
+    <div class="row" style="justify-content: center">
+      <a class="m-3 btn btn-success form-label col-sm" data-bs-toggle="collapse"
+        href="#addAmount" role="button" aria-expanded="false"
+        aria-controls="addAmount">
+        Add Amount
+      </a>
+      <a class="m-3 btn btn-success form-label col-sm" data-bs-toggle="collapse"
+        href="#history" role="button" aria-expanded="false"
+        aria-controls="addAmount">
+        Transaction History
+      </a>
+      <a class="m-3 btn btn-success form-label col-sm" data-bs-toggle="collapse"
+        href="#balance" role="button" aria-expanded="false"
+        aria-controls="addAmount">
+        Balance
+      </a>
+    </div>
+  </div>
+
+  <div class="collapse mb-3" id="addAmount">
+    <div class="card card-body">
+      <form action="/" method="post">
+        <div class="mb-3">
+          <select class="form-select" onchange="update()" id="selection"
+            required aria-label="Default select
+            example">
+            <option selected>Select Transaction Type</option>
+            <option value="credit">Credit</option>
+            <option value="debit">Debit</option>
+          </select>
+        </div>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-default">Enter
+            Amount:
+            <span class="mx-2 text-danger">
+              *
+            </span>
+          </span>
+          <input type="number" id="transaction_type" required
+            class="form-control"
+            aria-label="Sizing example
+            input" aria-describedby="inputGroup-sizing-default">
+        </div>
+        <div class="col-12">
+          <button class="btn btn-success" type="submit">Submit</button>
+          <button class="btn btn-danger" id="reset" type="button"
+            onclick="confirm_alert_reset()">Reset</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="collapse mb-3" id="history">
+    <div class="card card-body">
+      {% if allData|length == 0 %}
+      <div class="rounded">No Record Found...!!</div>
+      {% else %}
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Sr No</th>
+            <th scope="col">Credit</th>
+            <th scope="col">Debit</th>
+            <th scope="col">Date</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          {% for data in allData %}
+
+          <tr>
+            <th scope="row">{{loop.index}}</th>
+            <td>{{data.credit}}</td>
+            <td>{{data.debit}}</td>
+            <td>{{data.date}}</td>
+            <td><a href="/delete/int:{{data.srNo}}" class="btn btn-danger
+                btn-sm">Remove</a></td>
+          </tr>
+
+          {% endfor %}
+
+        </tbody>
+      </table>
+      <a type="button" id="delete_all" onclick="confirm_alert_delete_all()"
+        class="btn
+        btn-danger btn-sm">Delete All Transaction</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="collapse mb-3" id="balance">
+    <div class="card card-body">
+      Here You show your total balance
+    </div>
+  </div>
+
+</div>
+
+<script>
+  
+  function update(){
+
+    var select = document.getElementById('selection');
+    var value = select.options[select.selectedIndex].value;
+    if (value=='debit'){
+      document.getElementById("transaction_type").setAttribute("name","debit")
+      //var element = document.getElementById("transaction_type");
+      //var attribs = element.getAttribute('name');
+      //console.log(attribs);
+    }
+    else if(value=='credit'){
+      document.getElementById("transaction_type").setAttribute("name","credit")  
+      //var element = document.getElementById("transaction_type");
+      //var attribs = element.getAttribute('name');
+      //console.log(attribs);
+    }
+  }
+
+  function confirm_alert_reset(){
+    if(confirm("Do you really wants to reset the form ?")){
+      document.getElementById("reset").setAttribute("type","reset")
+    }
+    else{
+      null
+    }
+  }
+
+  function confirm_alert_delete_all(){
+    if(confirm("Do you really wants to delete the entire transactions?")){
+      document.getElementById("delete_all").setAttribute("href","/delete")
+    }
+    else{
+      null
+    }
+  }
+
+</script>
+{% endblock body %}

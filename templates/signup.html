@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="shadow my-4 mx-5 p-3 border rounded">
+    <p class="text-center m-0" id="signup_heading" style="font-size: 32px; font-weight:bolder;">Sign Up</p>
+    <form class="px-3 py-1" method="POST" action="/signup" autocomplete="on">
+
+        <!-- Name -->
+        <div class="form-group py-2">
+            <label class="py-2">Name</label>
+            <input type="text" required class="form-control py-2" name="name"
+                id="signup_name" placeholder="Mr. Preyansh Patel">
+        </div>
+
+        <!-- Email Address -->
+        <div class="form-group py-2">
+            <label class="py-2">Email Address</label>
+            <input type="email" required class="form-control py-2" name="email"
+                id="signup_email" placeholder="Email@example.com">
+        </div>
+
+        <!-- Mobile Number -->
+        <div class="form-group py-2">
+            <label class="py-2">Mobile Number</label>
+            <input type="text" required class="form-control py-2" name="m_no"
+                id="signup_mno" placeholder="+91 123-456-789">
+        </div>
+
+        <!-- Gender -->
+        <div class="form-group py-2">
+            <label class="py-2">Gender</label>
+            <div class="pt-1 px-2 border rounded">
+                <span class="form-check">
+                    <input class="form-check-input" type="radio"
+                        name="gender" id="signup_male" value="option1"
+                        checked required>
+                    <label class="form-check-label">
+                        Male
+                    </label>
+                </span>
+                <span class="form-check">
+                    <input class="form-check-input" type="radio"
+                        name="gender" id="signup_female"
+                        value="option2" required>
+                    <label class="form-check-label">
+                        Female
+                    </label>
+                </div>
+            </span>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group py-2">
+            <label class="py-2">Password</label>
+            <input type="password" class="form-control py-2" name="password"
+                id="signup_password" placeholder="Password" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary shadow my-2">Sign Up</button>
+    </form>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item py-2" href="/login">Already Registered? Click here to Login</a>
+    <a class="dropdown-item py-2" href="/forgotpassword">Forgot password?</a>
+</div>
+
+{% endblock body %}

@@ -30,8 +30,8 @@ def home():
             db.session.add(data)
             db.session.commit()
 
-    allData = PFManage.query.all()
-    return render_template("index.html",allData = allData)
+    # allData = PFManage.query.all()
+    return render_template("index.html")
 
 @app.route("/delete/int:<srNo>")
 def delete(srNo):
@@ -46,6 +46,18 @@ def deleteAll():
     db.session.query(PFManage).delete()
     db.session.commit()
     return redirect("/")
+
+@app.route("/login",methods=['GET','POST'])
+def login():
+    return render_template("login.html")
+
+@app.route("/signup",methods=['GET','POST'])
+def signup():
+    return render_template("signup.html")
+
+@app.route("/forgotpassword",methods=['GET','POST'])
+def forgot():
+    return render_template("forgot.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

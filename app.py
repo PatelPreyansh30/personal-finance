@@ -55,7 +55,7 @@ def login():
 def signup():
     return render_template("signup.html")
 
-@app.route("/forgotpassword",methods=['GET','POST'])
+@app.route("/forgot",methods=['GET','POST'])
 def forgot():
     return render_template("forgot.html")
 

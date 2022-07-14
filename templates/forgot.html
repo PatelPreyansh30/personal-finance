@@ -3,8 +3,8 @@
 {% block body %}
 
 <div class="shadow my-4 mx-5 p-3 border rounded">
-    <p class="text-center m-0" id="signup_heading" style="font-size: 32px; font-weight:bolder;">Login</p>
-    <form class="px-3 py-1" method="POST" action="/login" autocomplete="on">
+    <p class="text-center m-0 text-wrap" id="signup_heading" style="font-size: 32px; font-weight:bolder;">Reset Password</p>
+    <form class="px-3 py-1" method="POST" action="/forgot" autocomplete="on">
 
         <!-- Email -->
         <div class="form-group py-2">
@@ -14,17 +14,17 @@
         </div>
 
         <!-- Password -->
-        <div class="form-group py-2">
+        <!-- <div class="form-group py-2">
             <label class="py-2">Password</label>
             <input type="password" required class="form-control py-2" name="password"
                 id="login_password" placeholder="Password">
-        </div>
+        </div> -->
 
-        <button type="submit" class="btn btn-primary shadow">Sign in</button>
+        <button type="submit" class="btn btn-primary shadow">Reset</button>
     </form>
     <div class="dropdown-divider"></div>
     <a class="dropdown-item py-2 text-wrap" href="/signup">Doesn't have an account yet? Sign up</a>
-    <a class="dropdown-item py-2" href="/forgot">Forgot password?</a>
+    <a class="dropdown-item py-2 text-wrap" href="/forgot">Already registered? Click here</a>
 </div>
 
 {% endblock body %}

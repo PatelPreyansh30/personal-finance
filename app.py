@@ -1,6 +1,7 @@
 from flask import Flask, redirect,render_template,request
 from flask_sqlalchemy import SQLAlchemy
 from datetime import date
+from flask_mysqldb import MySQL
 from flask_security import *
 
 app = Flask(__name__)
@@ -38,7 +39,7 @@ def home():
     #         db.session.commit()
 
     # allData = PFManage.query.all()
-    return render_template("index.html")
+    return redirect("/login")
 
 # @app.route("/delete/int:<srNo>")
 # def delete(srNo):
@@ -61,6 +62,15 @@ def login():
         password = request.form.get('password')
         # print(email,password)
 
+        try:
+            query = Signup.query.filter_by(email=email).first()
+            if query.password == password:
+                return render_template("index.html")
+            else:
+                return f"Password is Invalid, Please Try Again"
+        except:
+            return f"Login through valid mail id"
+
     return render_template("login.html")
 
 @app.route("/signup",methods=['GET','POST'])
@@ -74,17 +84,18 @@ def signup():
         # print(name,email,m_no,gender,password)
 
         entry = Signup(name=name,email=email,m_no=m_no,gender=gender,password=password)
+        # print(entry)
         db.session.add(entry)
         db.session.commit()
 
     return render_template("signup.html")
 
-@app.route("/forgot",methods=['GET','POST'])
-def forgot():
+@app.route("/reset",methods=['GET','POST'])
+def reset():
     if request.method == 'POST':
         email = request.form.get('email')
         # print(email)
-    return render_template("forgot.html")
+    return render_template("reset.html")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True,threaded=True)

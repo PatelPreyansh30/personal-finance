@@ -1,0 +1,9 @@
+{
+    "params":
+    {
+        "local_server": "False",
+        "local_uri":"mysql://root:@localhost/personal_finance_management",
+        "prod_uri":"mysql://m3V$#%7CQl6N:Ie*pxOlbivbWvEUk@localhost/personal_finance_management"
+    }
+
+}

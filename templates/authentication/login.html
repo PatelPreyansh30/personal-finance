@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="shadow my-4 mx-5 p-3 border rounded">
+    <p class="text-center m-0" id="signup_heading" style="font-size: 32px;
+        font-weight:bolder;">Login to your account</p>
+    <form class="px-3 py-1 needs-validation" method="POST" action="/login"
+        autocomplete="on">
+
+        <!-- Reset Password Message -->
+        <span class="text-success">{{reset_password_done}}</span>
+
+        <!-- Email -->
+        <div class="form-group pt-1">
+            <label class="pt-2 form-label" for="email">Email address</label>
+            <input type="email" required="" class="form-control pt-2"
+                name="email" id="email" placeholder="Email@example.com">
+            <span class="text-danger mt-1">{{valid_email}}</span>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group pt-2">
+            <label class="pt-2 form-label">Password</label>
+            <div class="d-flex rounded" style="border: 1px #ced4da;">
+                <input type="password" required="" class="form-control pt-2"
+                    name="password" id="login_password" placeholder="Password">
+                <img id="password_eye" width="40px" class="p-1 border rounded
+                    form-control-sm" style="border: #ced4da;"
+                    src="{{url_for('static',filename='/assets/eye_password.png')}}"
+                    alt="Show" onclick="password_show()">
+            </div>
+            <span class="text-danger mt-1">{{valid_pass}}</span>
+        </div>
+
+        <button type="submit" class="mt-2 btn btn-primary shadow text-wrap">Login</button>
+    </form>
+
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item py-2 text-wrap" href="/signup">Doesn't registered
+        yet? Sign up</a>
+    <a class="dropdown-item py-2" href="/reset">Forgot password?</a>
+</div>
+
+{% endblock body %}

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="shadow my-4 mx-5 p-3 border rounded">
+    <p class="text-center m-0 text-wrap" id="signup_heading" style="font-size:
+        32px; font-weight:bolder;">Reset Password</p>
+
+    <form id="form" class="px-3 py-1" method="POST" action="/verify"
+        autocomplete="on">
+
+        <span class="text-success mt-1">{{valid_email}}</span>
+
+        <!-- OTP -->
+        <div class="form-group pt-1">
+            <label class="pt-2">OTP</label>
+            <input type="text" required class="form-control pt-2" name="otp"
+                id="reset_otp" placeholder="Enter your OTP">
+            <span class="text-danger mt-1">{{valid_otp}}</span>
+        </div>
+
+        <button type="submit" id="reset_button" class="mt-2 btn btn-primary
+            shadow">Submit</button>
+    </form>
+
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item py-2 text-wrap" href="/signup">Doesn't registered
+        yet? Sign up</a>
+    <a class="dropdown-item py-2 text-wrap" href="/login">Already registered?
+        Click here</a>
+</div>
+
+
+<script>
+    /*
+    function form_submit() {
+       document.getElementById("form").submit();
+    };
+
+    function get_otp(){
+        console.log("Working...")
+        document.getElementById("reset_otp").disabled=false
+        document.getElementById("reset_button").innerHTML="Submit"
+        document.getElementById("reset_button").setAttribute("type","submit")
+    }*/
+</script>
+{% endblock body %}

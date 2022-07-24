@@ -4,14 +4,13 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_security import *
 from werkzeug.security import *
 from datetime import date,timedelta
-from func import email_check, mno_check
-from alerts import EmailAlerts
+from alerts import EmailAlerts, CheckFunctions
 
 # App Declaration
 app = Flask(__name__)
 
 # Flask Security Declaration
-app.secret_key = 'KbPeShVmYq3t6w9z$C&E)H@McQfTjWnZ'
+app.secret_key = 'q4t6w9z$C&F)J@NcRfUjXn2r5u8x!A%D*G-KaPdSgVkYp3s6v9y$B?E(H+MbQeThWmZq4t7w!z%C*F)J@NcRfUjXn2r5u8x/A?D(G+KaPdSgVkYp3s6v9y$B&E)H@McQ'
 
 # Declare Session Time-Out
 app.permanent_session_lifetime = timedelta(minutes=5)
@@ -40,6 +39,7 @@ class Register(db.Model):
     Email = db.Column(db.String(40), nullable=False,unique=True)
     Mno = db.Column(db.String(150), nullable=False,unique=True)
     Gender = db.Column(db.String(10), nullable=False)
+    Age = db.Column(db.Integer, nullable=False)
     Password = db.Column(db.String(150), nullable=False)
     Date = db.Column(db.Date, default=date.today(), nullable=False)
 
@@ -52,13 +52,16 @@ class Register(db.Model):
 # User Request For App
 @app.route("/",methods=['GET','POST'])
 def index():
-    return redirect("/login")
+    return render_template("welcome.html")
 
 # Home Page (login required)
 @app.route("/home")
 @login_required
 def home():
-    return f'<h3>You Are On Home Page, Here You Acces Feature of this app<br>Currently this page is under devloping</h3>'
+    if 'login_email' and 'login_password' in session:
+        return render_template('home.html')
+    else:
+        return redirect("/login")
 
 # Login Page Logic
 @app.route("/login", methods=['POST','GET'])
@@ -67,6 +70,9 @@ def login():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
+        
+        session['login_email']=email
+        session['login_password'] = password
         
         try:
             if Register.query.filter_by(Email=email).first().Email:
@@ -92,20 +98,21 @@ def signup():
         email = request.form.get('email')
         m_no = request.form.get('m_no')
         gender = request.form.get('gender')
+        age = request.form.get('age')
         password = generate_password_hash(request.form.get('password'))
 
         email_ls = Register.query.with_entities(Register.Email).all()
         mno_ls = Register.query.with_entities(Register.Mno).all()
         
-        if email_check(email_ls,email)==0:
+        if CheckFunctions.email_check(email_ls,email)==0:
             return render_template("/authentication/signup.html",email_check="Email is already registered")
-        elif mno_check(mno_ls,m_no)==0:
+        elif CheckFunctions.mno_check(mno_ls,m_no)==0:
             return render_template("/authentication/signup.html",mno_check="Mobile Number is already registered")
         else:
-            entry = Register(Name=name, Email=email, Mno=m_no,Gender=gender, Password=password)
+            entry = Register(Name=name, Email=email, Mno=m_no,Gender=gender,Age=age, Password=password)
             db.session.add(entry)
             db.session.commit()
-            return render_template("/authentication/signup.html",signupmsg='You have successfully registered')
+            return render_template("/authentication/signup.html",signupmsg='True')
     
     return render_template("/authentication/signup.html")
 
@@ -116,8 +123,8 @@ def reset():
         session['reset_email'] = request.form.get('email')
         try:
             Register.query.filter_by(Email=session['reset_email']).first().Email
-            session['otp'] = EmailAlerts.email_alert(session['reset_email'])
-            return render_template("/authentication/reset_otp.html",valid_email="Successfully sent the OTP on your email")
+            session['otp'] = EmailAlerts.email_otp(session['reset_email'])
+            return render_template("/authentication/reset_otp.html",valid_email="Successfully sent the OTP on your email, if you don't recive OTP then check your email's spam folder")
         except:
             return render_template("/authentication/reset.html",invalid_email="Please enter valid email")
 
@@ -126,7 +133,7 @@ def reset():
 # OTP Verify
 @app.route("/verify",methods=["POST",'GET'])
 def otp():
-    if "reset_email" in session:
+    if "reset_email" and "otp" in session:
         if request.method == "POST":
             OTP = request.form.get('otp')
             if str(session['otp']) == OTP:
@@ -135,7 +142,7 @@ def otp():
             else:
                 return render_template("/authentication/reset.html",invalid_otp="Your OTP is incorrect")
     else:
-        return redirect("/login")
+        return redirect("/")
 
 # Reset The Password
 @app.route("/set-password",methods=['POST','GET'])
@@ -146,13 +153,13 @@ def set_password():
             old_data = Register.query.filter_by(Email=session['reset_email']).first()
             old_data.Password = newPass
             db.session.commit()
-            session.pop('reset_email',None)
-            return render_template("/authentication/login.html",reset_password_done="Login using new Password")
+            session.clear()
+            return render_template("/authentication/new_password.html",reset_password_done="True")
         else:
-            session.pop('reset_email',None)
+            session.clear()
             return redirect('/login')
     else:
-        return redirect("/login")
+        return redirect("/")
 
 # Running the App
 if __name__ == "__main__":

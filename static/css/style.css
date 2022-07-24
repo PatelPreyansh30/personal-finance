@@ -1,0 +1,11 @@
+.maincontainer{
+    background-image: url(/static/assets/backgroundPhoto.png);
+    background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 610px;
+  position: relative;
+}
+.container{
+    background-color: white;
+}

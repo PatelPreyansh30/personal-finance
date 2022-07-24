@@ -10,7 +10,7 @@ from alerts import EmailAlerts, CheckFunctions
 app = Flask(__name__)
 
 # Flask Security Declaration
-app.secret_key = 'q4t6w9z$C&F)J@NcRfUjXn2r5u8x!A%D*G-KaPdSgVkYp3s6v9y$B?E(H+MbQeThWmZq4t7w!z%C*F)J@NcRfUjXn2r5u8x/A?D(G+KaPdSgVkYp3s6v9y$B&E)H@McQ'
+app.secret_key = ''
 
 # Declare Session Time-Out
 app.permanent_session_lifetime = timedelta(minutes=5)
@@ -23,10 +23,10 @@ login_manager.init_app(app)
 env = 'dev'
 if env == 'dev':
     app.debug = True
-    app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:Preyansh3011@localhost/personal-finance-management"
+    app.config['SQLALCHEMY_DATABASE_URI'] = ""
 else:
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://vwsmfyqhkypfht:d059967f3ec1fd598a60c13e14c4aba3a44ba400b010a2ed82ca3635130568e0@ec2-3-217-14-181.compute-1.amazonaws.com:5432/dasotmoeq12jhn"
+    app.config['SQLALCHEMY_DATABASE_URI'] = ""
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)

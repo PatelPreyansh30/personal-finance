@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Bootstrap CSS -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+            crossorigin="anonymous">
+
+        <title>Personal Finance</title>
+    </head>
+    <body onload="openPopup()">
+</div>
+
+        <link rel="stylesheet" href="/static/css/popup.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+            rel="stylesheet">
+
+        <div class="shadow my-4 mx-5 p-3 border rounded">
+            <p class="text-center m-0" id="signup_heading" style="font-size:
+                32px;
+                font-weight:bolder;">Sign Up</p>
+            <!-- <p class="text-center m-0 text-success">{{signupmsg}}</p> -->
+            <form class="px-3 py-1" method="POST" action="/signup"
+                autocomplete="on">
+                <!-- Name -->
+                <div class="form-group py-2">
+                    <label class="py-2">Name</label>
+                    <input type="text" required class="form-control py-2"
+                        name="name"
+                        id="signup_name" placeholder="Mr. Preyansh Patel">
+                </div>
+
+                <!-- Email Address -->
+                <div class="form-group py-2">
+                    <label class="py-2">Email Address</label>
+                    <input type="email" required class="form-control py-2"
+                        name="email"
+                        id="signup_email" placeholder="Email@example.com">
+                    <span class="text-danger">{{email_check}}</span>
+                </div>
+
+                <!-- Mobile Number -->
+                <div class="form-group py-2">
+                    <label class="py-2">Mobile Number</label>
+                    <input type="text" required class="form-control py-2"
+                        name="m_no"
+                        id="signup_mno" placeholder="+91 123-456-789">
+                    <span class="text-danger">{{mno_check}}</span>
+                </div>
+
+                <!-- Gender -->
+                <div class="form-group py-2">
+                    <label class="py-2">Gender</label>
+                    <div class="pt-1 px-2 border rounded">
+                        <span class="form-check">
+                            <input class="form-check-input" type="radio"
+                                name="gender" id="signup_male" value="male"
+                                checked required>
+                            <label class="form-check-label">
+                                Male
+                            </label>
+                        </span>
+                        <span class="form-check">
+                            <input class="form-check-input" type="radio"
+                                name="gender" id="signup_female"
+                                value="female" required>
+                            <label class="form-check-label">
+                                Female
+                            </label>
+                        </div>
+                    </span>
+                </div>
+
+                <!-- User Age -->
+                <div class="form-group py-2">
+                    <label class="py-2">Age</label>
+                    <input type="number" required class="form-control py-2"
+                        name="age"
+                        id="signup_age" placeholder="Your age">
+                </div>
+
+                <!-- Password -->
+                <div class="form-group py-2">
+                    <label class="py-2">Password</label>
+                    <div class="d-flex rounded" style="border: 1px #ced4da;">
+                        <input type="password" required="" class="form-control
+                            pt-2"
+                            name="password" id="login_password"
+                            placeholder="Password">
+                        <img id="password_eye" width="40px" class="p-1 border
+                            rounded form-control-sm" style="border: #ced4da;"
+                            src="{{url_for('static',filename='/assets/eye_password.png')}}"
+                            alt="Show" onclick="password_show()">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary shadow my-2">Sign
+                    Up</button>
+
+                <!-- Successfully Data Submmited Popup -->
+                <div class="popup" id="popup">
+                    <img src="/static/assets/BlueTick.png" alt="Tick Mark">
+                    <h2>Thank you!</h2>
+                    <p>Your password has been changed successfully.</p>
+                    <a href="/login" onclick="closePopup()" class="btn">Login
+                        Now</a>
+                </div>
+
+            </form>
+
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item py-2 text-wrap" href="/login">Already
+                Registered?
+                Click here to Login</a>
+            <a class="dropdown-item py-2" href="/reset">Forgot password?</a>        <script>
+
+    let popup = document.getElementById("popup");
+    function openPopup(){
+        if ('{{ signupmsg }}'=='True'){
+            console.log("function chal re la he")
+            popup.classList.add("open-popup")
+        }
+    }
+    function closePopup(){
+        popup.classList.remove("open-popup")
+    }
+
+</script>
+        <!-- Optional JavaScript; choose one of the two! -->
+
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+        <!-- Option 2: Separate Popper and Bootstrap JS -->
+
+        <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script> -->
+        <script>
+      var temp = false
+      function password_show(){
+        if (temp){
+          document.getElementById('login_password').setAttribute('type','password')
+          document.getElementById('password_eye').src="{{url_for('static',filename='/assets/eye_password.png')}}"
+          temp = false
+        }
+        else{
+          document.getElementById('login_password').setAttribute('type','text')
+          document.getElementById('password_eye').src="{{url_for('static',filename='/assets/eye_close_password.png')}}"
+          // document.getElementById('password_eye').style.filter='100%'
+          temp = true
+        }
+      }
+    </script>
+    </body>
+</html>

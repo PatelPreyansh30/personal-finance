@@ -1,0 +1,84 @@
+/* Registrastion Popup */
+.popup{
+    font-family: 'Poppins', sans-serif;
+    width: 400px;
+    background: #fff;
+    border-radius: 8px;
+    position: absolute;
+    left: 50%;
+    text-align: center;
+    padding: 0 30px 30px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+    top: 0;
+    transform: translate(-50%,-50%) scale(0.1);
+    visibility: hidden;
+    transition: transform 0.4s, top 0.4s;
+}
+
+.open-popup{
+    visibility: visible;
+    top: 50%;
+    transform: translate(-50%,-50%) scale(1);
+}
+
+.popup img {
+    width: 100px;
+    margin: -50px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.popup h2 {
+    font-size: 38px;
+    font-weight: 500;
+    margin: 55px 0 25px;
+}
+.popup a{
+    width: 100%;
+    margin-top: 25px;
+    padding: 10px;
+    background: #009CE6;
+    color: #fff;
+    outline: none;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+}
+.popup a:hover{
+    background: #036ea0;
+    color: #fff;
+}
+
+
+/* New Password PopUp */
+.popup-newpass{
+    font-family: 'Poppins', sans-serif;
+    width: 400px;
+    background: #fff;
+    border-radius: 8px;
+    position: absolute;
+    left: 50%;
+    text-align: center;
+    padding: 0 30px 30px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+    top: 0;
+    transform: translate(-50%,-50%) scale(0.1);
+    visibility: hidden;
+    transition: transform 0.4s, top 0.4s;
+}
+
+.popup-newpass img{
+    width: 100px;
+    margin: -50px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.popup-newpass h2
+
+.popup-newpass a
+
+.popup-newpass a:hover{
+    background: #036ea0;
+    color: #fff;
+}

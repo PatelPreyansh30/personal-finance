@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<link rel="stylesheet" href="/static/css/style.css">
+
+<div class="maincontainer">
+    <div class="container border shadow">
+        <h1>I am your <span class="auto-input"></span></h1>
+        <hr>
+        <div>
+            <p>Already User? Login Now</p>
+            <a href="/login" class="btn">Login Now</a>
+            <p>New to our Platform? Signup Now</p>
+            <a href="/signup" class="btn">Signup Now</a>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script>
+    var typed = new Typed('.auto-input',{
+        strings: ['Finance Manager','Spending Tracker','Savings Increaser','Investment Adviser'],
+        typeSpeed: 80,
+        backSpeed: 80,
+        loop: true
+    })
+</script>
+{% endblock body %}

@@ -1,0 +1,40 @@
+.maincontainer{
+  margin: 12px;
+  padding: 0;
+  top: 0;
+}
+.container{
+  margin-top: 20px;
+  padding: 35px;
+  border-radius: 10px;
+}
+.container h1{
+  font-size: 35px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+.container hr{
+  border: 1px solid gray;
+}
+.container span{
+  color: #009CE6;
+}
+.container p{
+  font-weight: 480;
+  margin-top: 10px;
+  font-size: 18px;
+}
+.container a{
+  font-size: 18px;
+  text-align: center;
+  width: 100%;
+  color: #009CE6;
+  border: 3px solid #009CE6;
+  border-radius: 10px;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.3);
+}
+.container a:hover{
+  color: #fff;
+  background-color:#0680b9;
+  border: 3px solid #0680b9;
+}

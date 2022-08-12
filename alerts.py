@@ -5,7 +5,7 @@ from random import random
 class EmailAlerts():
     def email_otp(to):
         _user = 'abc302266@gmail.com'
-        _password = 'tjhobnvjugvpwjtn'
+        _password = ''
 
         otp = int(random()*10000000)
         body=f"Your One Time Password is: {otp}"
